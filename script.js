@@ -57,7 +57,10 @@ function drawPoints(ctx, n, delay) {
     }
 }
 
-let n = 15;
+let sound = new Audio('0.mp3');
+sound.play();
+
+let n = 10;
 let delay = 1000;
 drawPoints(ctx, n, delay);
 
