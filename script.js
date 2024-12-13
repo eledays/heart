@@ -1,4 +1,6 @@
-const scale = 1 / 200;
+let scale = Math.max(1 / 200, 1 / window.innerWidth * 4, 1 / window.innerHeight * 4);
+console.log(scale);
+
 const deltaY = -50;
 
 let heartColor = '#ff0000';
