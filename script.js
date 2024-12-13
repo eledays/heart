@@ -8,6 +8,10 @@ let backColor = '#101010';
 let canvas = document.querySelector('canvas');
 let ctx = canvas.getContext('2d');
 
+let sound = new Audio('https://github.com/eledays/heart/raw/refs/heads/main/0.mp3');
+
+let start_btn = document.querySelector('button.start');
+
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
@@ -57,11 +61,23 @@ function drawPoints(ctx, n, delay) {
     }
 }
 
-let sound = new Audio('0.mp3');
-sound.play();
+start_btn.addEventListener('click', () => {
+    start_btn.style.opacity = 0;
+    setTimeout(() => start_btn.remove(), 500);
 
-let n = 10;
-let delay = 1000;
-drawPoints(ctx, n, delay);
+    sound.play();
 
-setTimeout(drawPoints, delay * n, ctx, 50000, 1);
+    let n = 10;
+    let delay = 1000;
+    drawPoints(ctx, n, delay);
+
+    setTimeout(drawPoints, delay * n, ctx, 50000, 1);
+});
+
+let sound_on = true;
+let sound_btn = document.querySelector('button.volume');
+sound_btn.addEventListener('click', () => {
+    sound_on = !sound_on;
+    sound_btn.querySelector('span').innerText = (sound_on) ? 'volume_up' : 'volume_off';
+    sound.volume = sound_on ? 1 : 0;
+});
